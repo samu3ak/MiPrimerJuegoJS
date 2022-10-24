@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'Overpass Mono';
+    src: url(../fonts/overpass-mono/overpass-mono-regular.otf);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: #171810;
+}
+
+header {
+    height: 150px;
+    line-height: 150px;
+    background-color: rgb(0, 0, 0);
+    font-family: Overpass Mono;
+    font-size: 32px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 85% 15%;
+    height: fit-content;
+    width: fit-content;
+}
+
+header div {
+    width: fit-content;
+    height: fit-content;
+    margin: 0 auto;
+}
+
+header h1 {
+    color: white;
+}
+
+header span {
+    color: #03fa6e;
+}
+
+.imagen {
+    height: 150px;
+}
+
+header img {
+    margin-top: 8px;
+    width: 158.4px;
+    /*264px original*/
+    height: 129.6px;
+    /*216px original*/
+}
+
+.loginBox {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 90%;
+    margin: 150px auto;
+    height: auto;
+    width: 500px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    font-family: Consolas;
+    border: 1px solid white;
+}
+
+.loginBox h1 {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.loginBox div {
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.formContainer {
+    display: grid;
+    grid-template-columns: 35% 55%;
+    row-gap: 20px;
+    height: auto;
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+form button[type=submit] {
+    display: block;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: 150px;
+    height: 50px;
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Consolas;
+}
+
+form button[type=submit]:hover{
+    background-color: #03fa6e;
+}
+
+footer {
+    background-color: black;
+    color: white;
+    font-family: consolas;
+    height: 50px;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    position: fixed;
+    bottom: 0%;
+}
