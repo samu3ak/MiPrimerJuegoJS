@@ -99,7 +99,7 @@ form button[type=submit] {
     font-family: Consolas;
 }
 
-form button[type=submit]:hover{
+form button[type=submit]:hover {
     background-color: #03fa6e;
 }
 
@@ -113,4 +113,9 @@ footer {
     text-align: center;
     position: fixed;
     bottom: 0%;
+}
+
+/* Dinamic boxes CSS */
+.errorMsg {
+    display: none;
 }
