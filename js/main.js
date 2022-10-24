@@ -21,20 +21,26 @@ class Player {
 // Text boxes
 
 
-
-
 // Events
 
 // Cuando el jugador designa su nombre
 $("form").addEventListener("submit", (event) => {
     event.preventDefault();
+    let campoUsuario = $("input[name=username]");
 
-    if ($("input[name=username]").value == "") {
-        $(".errorMsg").style.display = "block";
+    if (campoUsuario.value == "") {
+        $(".errorMsg").style.display = "inline";
+        $(".catGif").style.display = "inline";
+        $(".loginBox").style.animation = "shake 0.8s 1";
+        campoUsuario.style.transition = "background-color 1s";
+        campoUsuario.style.backgroundColor = "#ff3737";
+        setInterval(() => {
+            campoUsuario.style.backgroundColor = "#ffffff";
+        }, 1000);
     } else {
-        $(".errorMsg").remove();
-        var player = new Player($("input[name=username]").value);
+        var player = new Player(campoUsuario.value);
         player.test();
+        $(".errorMsg").remove();
         $(".loginBox").remove();
     }
 });
