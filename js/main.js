@@ -20,10 +20,16 @@ class Player {
 
 // Text boxes
 
+// Audio variables declaration & Volume adjustment
+var audioError = new Audio("audio/error.mp3");
+audioError.volume = 0.2;
+
+var audioMessage = new Audio("audio/message.mp3");
+audioMessage.volume = 0.2;
 
 // Events
 
-// Cuando el jugador designa su nombre
+// Player clicks submit button in name select screen
 $("form").addEventListener("submit", (event) => {
     event.preventDefault();
     let campoUsuario = $("input[name=username]");
@@ -36,11 +42,11 @@ $("form").addEventListener("submit", (event) => {
         campoUsuario.style.backgroundColor = "#ff3737";
         setInterval(() => {
             campoUsuario.style.backgroundColor = "#ffffff";
+            $(".loginBox").style.animation = "";
         }, 1000);
+        audioError.play();
     } else {
-        var player = new Player(campoUsuario.value);
-        player.test();
-        $(".errorMsg").remove();
-        $(".loginBox").remove();
+        $(".loginBox").classList.add('animate__animated', 'animate__backOutLeft');
+        audioMessage.play();
     }
 });
