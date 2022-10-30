@@ -34,6 +34,7 @@ $("form").addEventListener("submit", (event) => {
     event.preventDefault();
     let campoUsuario = $("input[name=username]");
 
+    // User left the username field empty
     if (campoUsuario.value == "") {
         $(".errorMsg").style.display = "inline";
         $(".catGif").style.display = "inline";
@@ -48,5 +49,11 @@ $("form").addEventListener("submit", (event) => {
     } else {
         $(".loginBox").classList.add('animate__animated', 'animate__backOutLeft');
         audioMessage.play();
+        setInterval(() => {
+            $(".loginBox").remove();
+            setInterval(() => {
+                document.location.href = "html/quiz1.html";
+            }, 200);
+        }, 500);
     }
 });
