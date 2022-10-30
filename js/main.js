@@ -24,8 +24,8 @@ class Player {
 var audioError = new Audio("audio/error.mp3");
 audioError.volume = 0.2;
 
-var audioMessage = new Audio("audio/message.mp3");
-audioMessage.volume = 0.2;
+var audioPopUp = new Audio("audio/alert.mp3");
+audioPopUp.volume = 1;
 
 // Events
 
@@ -38,21 +38,23 @@ $("form").addEventListener("submit", (event) => {
     if (campoUsuario.value == "") {
         $(".errorMsg").style.display = "inline";
         $(".catGif").style.display = "inline";
+        $(".errorMsg").classList.add('animate__animated', 'animate__heartBeat');
+        $(".catGif").classList.add('animate__animated', 'animate__swing');
         $(".loginBox").style.animation = "shake 0.8s 1";
         campoUsuario.style.transition = "background-color 1s";
         campoUsuario.style.backgroundColor = "#ff3737";
-        setInterval(() => {
+        setTimeout(() => {
             campoUsuario.style.backgroundColor = "#ffffff";
-            $(".loginBox").style.animation = "";
         }, 1000);
         audioError.play();
     } else {
+        $(".loginBox").style.animation = "";
         $(".loginBox").classList.add('animate__animated', 'animate__backOutLeft');
-        audioMessage.play();
-        setInterval(() => {
+        audioPopUp.play();
+        setTimeout(() => {
             $(".loginBox").remove();
-            setInterval(() => {
-                document.location.href = "html/quiz1.html";
+            setTimeout(() => {
+                document.location.href = "html/welcome.html";
             }, 200);
         }, 500);
     }
