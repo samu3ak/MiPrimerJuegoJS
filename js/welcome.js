@@ -25,6 +25,9 @@ audioPopUp2.volume = 0.5;
 var audioBack = new Audio("../audio/back.mp3");
 audioBack.volume = 1;
 
+var audioMessage = new Audio("../audio/message.mp3");
+audioMessage.volume = 0.4;
+
 // Events
 audioPopUp.play();
 $(".dialogBox").classList.add('animate__animated', 'animate__bounceIn');
@@ -32,10 +35,43 @@ $(".dialogBox").style.display = "block";
 $(".buttonNext").classList.add('animate__animated', 'animate__bounceIn');
 $(".buttonBack").classList.add('animate__animated', 'animate__bounceIn');
 $(".currentPage").classList.add('animate__animated', 'animate__bounceIn');
-// Player clicks next button
+$(".note").classList.add('animate__animated', 'animate__tada');
+
+// Note dialog box pop-up
+setTimeout(() => {
+    $(".note").style.display = "block";
+    audioMessage.play();
+}, 2000);
+
+// Note dialog close button
+$(".note button").addEventListener("click", () => {
+    $(".note").classList.replace('animate__tada', 'animate__fadeOut');
+    setTimeout(() => {
+        $(".note").remove();
+    }, 1000);
+});
+
+// Player clicks next button or presses right arrow
 var page = 1;
 var esPrimeraVez = true;
-$(".buttonNext").addEventListener("click", () => {
+$(".buttonNext").addEventListener("click", nextDialog);
+$("body").addEventListener("keydown", (event) => {
+    if (event.key == "ArrowRight") {
+        nextDialog();
+    }
+});
+
+// Player clicks back button
+$(".buttonBack").addEventListener("click", prevDialog);
+$("body").addEventListener("keydown", (event) => {
+    console.log(event);
+    if (event.key == "ArrowLeft") {
+        prevDialog();
+    }
+});
+
+// Next dialog logic function
+function nextDialog() {
     if (page < 3) {
         page++;
 
@@ -66,17 +102,18 @@ $(".buttonNext").addEventListener("click", () => {
             }, 800);
         }, 100);
     }
-});
+}
 
-// Player clicks back button
-$(".buttonBack").addEventListener("click", () => {
+// Back dialog logic function
+
+function prevDialog() {
     if (page > 1 && page <= 3) {
         $(".buttonNext").innerHTML = "Siguiente";
         page--;
         dialogoTexto(50);
         audioBack.play();
     }
-});
+}
 
 // Dialog Box Animation
 

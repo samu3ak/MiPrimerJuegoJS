@@ -50,3 +50,37 @@
     font-weight: bolder;
     color: white;
 }
+
+.note {
+    background-color: black;
+    border: solid 1px white;
+    height: 250px;
+    width: 250px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 150px;
+    text-align: center;
+    display: none;
+}
+
+.note p {
+    font-family: Overpass Mono;
+    font-weight: bolder;
+    font-size: 18px;
+    color: white;
+    padding: 50px;
+}
+
+.note button {
+    font-family: Overpass Mono;
+    font-weight: bolder;
+    width: 100%;
+    height: 30px;
+    float: right;
+    background-color: white;
+}
+
+.note button:hover {
+    background-color: #03fa6e;
+    cursor: pointer;
+}
