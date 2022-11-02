@@ -8,13 +8,10 @@ function insertAfter(newNode, referenceNode) {
 }
 
 // Classes definition
-class Player {
-    constructor(name) {
-        this.name = name;
-        this.pts = 0;
-    }
-    test() {
-        console.log(this.name);
+class Jugador {
+    constructor(nombre) {
+        this.nombre = nombre;
+        this.puntos = 0;
     }
 }
 
@@ -48,6 +45,8 @@ $("form").addEventListener("submit", (event) => {
         }, 1000);
         audioError.play();
     } else {
+        var jugador = new Jugador(campoUsuario.value.trim());
+        localStorage.setItem("jugador", JSON.stringify(jugador));
         $(".loginBox").style.animation = "";
         $(".loginBox").classList.add('animate__animated', 'animate__backOutLeft');
         audioPopUp.play();

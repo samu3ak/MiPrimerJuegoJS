@@ -7,10 +7,10 @@ function insertAfter(newNode, referenceNode) {
     referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
 }
 
-// Classes definition
-
-
-// Text boxes
+// LocalStorage import
+var jugador = JSON.parse(localStorage.getItem("jugador"));
+$(".nombre").innerHTML = jugador.nombre;
+$(".puntos").innerHTML = jugador.puntos + " pts";
 
 // Audio variables declaration & Volume adjustment
 var audioAlert = new Audio("../audio/alert.mp3");
@@ -41,7 +41,7 @@ $(".note").classList.add('animate__animated', 'animate__tada');
 setTimeout(() => {
     $(".note").style.display = "block";
     audioMessage.play();
-}, 2000);
+}, 1800);
 
 // Note dialog close button
 $(".note button").addEventListener("click", () => {
@@ -71,8 +71,10 @@ $("body").addEventListener("keydown", (event) => {
 });
 
 // Next dialog logic function
+var numPages = 4;
+$(".currentPage").innerHTML = 1 + "/" + numPages;
 function nextDialog() {
-    if (page < 3) {
+    if (page < numPages) {
         page++;
 
         if (esPrimeraVez) {
@@ -87,18 +89,15 @@ function nextDialog() {
             siguienteDialogo();
         }
         dialogoTexto(500);
-        if (page == 3) {
+        if (page == numPages) {
             $(".buttonNext").innerHTML = "Comenzar";
         }
-    } else {
-        $(".dialogBox").classList.add('animate__animated', 'animate__bounceOut');
-        $(".buttonNext").classList.add('animate__animated', 'animate__bounceOut');
-        $(".buttonBack").classList.add('animate__animated', 'animate__bounceOut');
-        $(".currentPage").classList.add('animate__animated', 'animate__bounceOut');
+    } else {  // Player clicks confirm button
+        $(".wrap").classList.add('animate__animated', 'animate__bounceOut');
         setTimeout(() => {
             audioAlert.play();
             setTimeout(() => {
-                document.location.href = "../index.html";
+                document.location.href = "./quiz1.html";
             }, 800);
         }, 100);
     }
@@ -107,7 +106,7 @@ function nextDialog() {
 // Back dialog logic function
 
 function prevDialog() {
-    if (page > 1 && page <= 3) {
+    if (page > 1 && page <= numPages) {
         $(".buttonNext").innerHTML = "Siguiente";
         page--;
         dialogoTexto(50);
@@ -126,7 +125,6 @@ function siguienteDialogo() {
 }
 
 // Dialog Text Change Check
-
 function dialogoTexto(timout) {
     setTimeout(() => {
         switch (page) {
@@ -134,16 +132,23 @@ function dialogoTexto(timout) {
                 $(".dialogText").innerHTML = "Bienvenido al juego, esta página, realizada y codificada usando exclusivamente HTML, CSS y JavaScript te presentará y guiará por una serie de juegos que le ayudarán a conocer más acerca de quién es Samuel Bolívar Villanueva";
                 break;
             case 2:
-                $(".dialogText").innerHTML = "Estos juegos se trataran de una serie de desafíos a superar, con los cuales obtendrás puntos y en base a los cuales recibirás un resultado al final del juego";
+                $(".dialogText").innerHTML = "</br>Se presentarán una serie de preguntas a través de las cuales obtendrás puntos y con los que recibirás un resultado al final del juego";
                 break;
 
             case 3:
+                $(".dialogText").innerHTML = "</br>Arriba vas a tener la puntuación que tienes actualmente, la cuál irá variando a medida que vayas acertando preguntas";
+                setTimeout(() => {
+                    $(".hud").classList.add('animate__animated', 'animate__flash');
+                    $(".hud").style.opacity = 1;
+                }, 2000);
+                break;
+            case 4:
                 $(".dialogText").innerHTML = "</br>Para empezar, vamos a dirigirnos a un Quiz sobre Samuel, a ver que tan bien lo conoces";
                 break;
             default:
                 break;
         }
-        $(".currentPage").innerHTML = page + "/3";
+        $(".currentPage").innerHTML = page + "/" + numPages;
     }, timout);
 }
 
