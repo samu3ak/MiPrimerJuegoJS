@@ -28,5 +28,13 @@ audioBack.volume = 1;
 var audioMessage = new Audio("../audio/message.mp3");
 audioMessage.volume = 0.4;
 
-// Events
+// Classes definition
+class QuizBox{
+    constructor(){
+        this.titulo = "";
+        this.tiempo = 0;
+        this.opciones = ["","","",""];
+        this.haSeleccionado = false;
+    }
+}
 
