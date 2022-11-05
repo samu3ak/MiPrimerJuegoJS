@@ -21,6 +21,7 @@
     border: 2px solid white;
     height: 600px;
     width: 1500px;
+    display: none;
 }
 
 .quizBox p {
@@ -62,6 +63,17 @@
     width: 500px;
     background-color: black;
     border: 2px solid white;
+}
+
+.grid .opcion {
+    text-align: center;
+    color: white;
+    font-family: Overpass Mono;
+    font-weight: bold;
+}
+
+.grid .opcion p {
+    padding: 50px;
 }
 
 .quizBox .grid div:hover {

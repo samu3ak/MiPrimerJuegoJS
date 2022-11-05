@@ -23,10 +23,12 @@ $(document).ready(function () {
 
     // Classes definition
     class QuizBox {
-        constructor(titulo) {
+        constructor(titulo, opcion1, opcion2, opcion3, opcion4, respuestaCorrecta) {
             this.titulo = titulo;
             this.tiempo = 0;
             this.opciones = ["", "", "", ""];
+            this.opcionElegida = "";
+            this.respuestaCorrecta = "";
             this.haSeleccionado = false;
             $(".quizBox .titulo").text(this.titulo);
             $(".quizBox .tiempo").text(this.tiempo + "s");
@@ -39,8 +41,34 @@ $(document).ready(function () {
             this.opciones[1] = opcion2;
             this.opciones[2] = opcion3;
             this.opciones[3] = opcion4;
+            $.map(this.opciones, function (elementOrValue, indexOrKey) {
+                $(`.opcion${indexOrKey + 1} p`).text(elementOrValue);
+            });
         }
     }
+
+    // Events
+    $(".quizBox").addClass('animate__animated animate__bounceInRight');
+    $(".quizBox").css("display", "block");
+    audioBack.play();
+
     var quiz = new QuizBox();
+
+    $(".opcion").click(function (e) {
+        e.preventDefault();
+        quiz.haSeleccionado = true;
+        quiz.opcionElegida = $(this).text().trim();
+        $(".opcion").css("border", "2px solid white");
+        $(this).css("border", "2px solid yellow");
+    });
+
+    $("button").click(function (e) {
+        e.preventDefault();
+        if (quiz.haSeleccionado && quiz.opcionElegida == quiz.respuestaCorrecta) {
+            alert("si");
+        } else {
+            alert("no");
+        }
+    });
 });
 

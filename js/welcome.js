@@ -39,17 +39,16 @@ $(document).ready(function () {
     $(".buttonNext").classList.add('animate__animated', 'animate__bounceIn');
     $(".buttonBack").classList.add('animate__animated', 'animate__bounceIn');
     $(".currentPage").classList.add('animate__animated', 'animate__bounceIn');
-    $(".note").classList.add('animate__animated', 'animate__tada');
+    $(".note").classList.add('animate__animated', 'animate__flash');
 
     // Note dialog box pop-up
     setTimeout(() => {
         $(".note").style.display = "block";
-        audioMessage.play();
     }, 1800);
 
     // Note dialog close button
     $(".note button").addEventListener("click", () => {
-        $(".note").classList.replace('animate__tada', 'animate__fadeOut');
+        $(".note").classList.replace('animate__flash', 'animate__fadeOut');
         setTimeout(() => {
             $(".note").remove();
         }, 1000);
