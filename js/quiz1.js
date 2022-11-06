@@ -28,7 +28,7 @@ $(document).ready(function () {
             this.tiempo = 0;
             this.opciones = ["", "", "", ""];
             this.opcionElegida = "";
-            this.respuestaCorrecta = "";
+            this.respuestaCorrecta = "Opcion 1";
             this.haSeleccionado = false;
             $(".quizBox .titulo").text(this.titulo);
             $(".quizBox .tiempo").text(this.tiempo + "s");
@@ -64,11 +64,12 @@ $(document).ready(function () {
 
     $("button").click(function (e) {
         e.preventDefault();
+        $("button").prop("disabled", "true");
         if (quiz.haSeleccionado && quiz.opcionElegida == quiz.respuestaCorrecta) {
-            alert("si");
+            jugador.puntos += 500;
+            $(".puntos").html(jugador.puntos);
         } else {
-            alert("no");
+            
         }
     });
 });
-

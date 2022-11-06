@@ -143,7 +143,7 @@ $(document).ready(function () {
                     setTimeout(() => {
                         $(".hud").classList.add('animate__animated', 'animate__flash');
                         $(".hud").style.opacity = 1;
-                    }, 2000);
+                    }, 1800);
                     break;
                 case 4:
                     $(".dialogText").innerHTML = "</br>Para empezar, vamos a dirigirnos a un Quiz sobre Samuel, a ver que tan bien lo conoces";
