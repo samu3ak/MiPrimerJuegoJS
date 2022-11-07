@@ -103,6 +103,8 @@ $(document).ready(function () {
                 $(".quizBox").addClass('animate__animated animate__shakeX');
                 $(".verCorrecto").addClass('animate__animated animate__tada');
                 $(".verCorrecto").css("display", "inline");
+                $(".siguiente").addClass('animate__animated animate__tada');
+                $(".siguiente").css("display", "inline");
             }
         }
     });
