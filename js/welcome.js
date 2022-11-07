@@ -134,7 +134,7 @@ $(document).ready(function () {
         setTimeout(() => {
             switch (page) {
                 case 1:
-                    $(".dialogText").innerHTML = "Bienvenido al juego, esta página, realizada y codificada usando exclusivamente HTML, CSS y JavaScript te presentará y guiará por una serie de juegos que le ayudarán a conocer más acerca de quién es Samuel Bolívar Villanueva";
+                    $(".dialogText").innerHTML = "Bienvenido al juego, esta página, realizada y codificada usando exclusivamente HTML, CSS y JavaScript te presentará y guiará a través de un quiz que te ayudará a conocer más acerca de quién es Samuel Bolívar Villanueva";
                     break;
                 case 2:
                     $(".dialogText").innerHTML = "</br>Se presentarán una serie de preguntas a través de las cuales obtendrás puntos y con los que recibirás un resultado al final del juego";
@@ -148,7 +148,7 @@ $(document).ready(function () {
                     }, 1800);
                     break;
                 case 4:
-                    $(".dialogText").innerHTML = "</br>Para empezar, vamos a dirigirnos a un Quiz sobre Samuel, a ver que tan bien lo conoces";
+                    $(".dialogText").innerHTML = "</br>Ahora sí que sí, vamos a dirigirnos a un Quiz sobre Samuel, a ver que tan bien lo conoces";
                     break;
                 default:
                     break;

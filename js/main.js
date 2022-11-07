@@ -19,8 +19,6 @@ $(document).ready(function () {
         }
     }
 
-    // Text boxes
-
     // Audio variables declaration & Volume adjustment
     var audioError = new Audio("audio/error.mp3");
     audioError.volume = 0.2;
@@ -29,7 +27,6 @@ $(document).ready(function () {
     audioPopUp.volume = 1;
 
     // Events
-
     // Player clicks submit button in name select screen
     $("form").addEventListener("submit", (event) => {
         event.preventDefault();

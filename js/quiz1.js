@@ -100,8 +100,15 @@ $(document).ready(function () {
         case 9:
             var quiz = new QuizBox("¿Cuál es su comida favorita?", "Parrillada Ibérica", "Pizza BBQ del Domino's", "Whopper", "Pasta Carbonara", "Parrillada Ibérica");
             break;
+        case 10:
+            var quiz = new QuizBox("¿Cuál es su juego de ritmo favorito?", "Dance Dance Revolution", "osu!", "Guitar Hero", "Chunithm", "osu!");
+            break;
+        case 11:
+            var quiz = new QuizBox("¿En qué provincia nació?", "Cádiz", "Sevilla", "Almería", "Jaen", "Almería");
+            $(".siguiente").text("Finalizar");;
+            break;
         default:
-            document.location.href = "./index.html";
+            document.location.href = "./final.html";
             break;
     }
 
