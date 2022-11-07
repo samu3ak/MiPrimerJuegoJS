@@ -42,12 +42,6 @@
     font-size: 38px;
 }
 
-.quizBox .tiempo {
-    float: right;
-    font-size: 32px;
-    padding: 30px;
-}
-
 .quizBox .grid {
     display: grid;
     margin-left: 100px;

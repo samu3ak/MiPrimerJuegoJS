@@ -3,7 +3,7 @@ $(document).ready(function () {
     // LocalStorage import
     var jugador = JSON.parse(localStorage.getItem("jugador"));
     $(".nombre").html(jugador.nombre);
-    $(".puntos").html(jugador.puntos);
+    $(".puntos").html(jugador.puntos + " pts");
     var quizNumero = parseInt(localStorage.getItem("quiz"));
 
     // Audio variables declaration & Volume adjustment
@@ -57,7 +57,6 @@ $(document).ready(function () {
             var opciones = document.querySelectorAll(".opcion");
             let i = 0;
             while (i < opciones.length - 1 && opciones[i].innerHTML.trim() != "<p>" + this.respuestaCorrecta + "</p>") {
-                console.log(opciones[i].value);
                 i++;
             }
             return opciones[i];
@@ -69,16 +68,22 @@ $(document).ready(function () {
     $(".quizBox").css("display", "block");
     audioBack.play();
 
+    // Checks what quiz question goes next
     switch (quizNumero) {
         case 0:
-            var quiz = new QuizBox("Hola", "test1", "test2", "test3", "test4", "test3");
+            var quiz = new QuizBox("¿Cuál es el animal preferido de Samuel?", "Perro", "Capibara", "Gato", "Periquito", "Gato");
+            break;
+        case 1:
             break;
         default:
             break;
     }
 
+    // Player clicks one option logic button
+    var opcionElegida = null;
     $(".opcion").click(function (e) {
         e.preventDefault();
+        opcionElegida = this;
         $(".opcion").css("transition", "none");
         quiz.haSeleccionado = true;
         quiz.opcionElegida = $(this).text().trim();
@@ -86,34 +91,66 @@ $(document).ready(function () {
         $(this).css("border", "2px solid yellow");
     });
 
+    // Player clicks send button
     $(".enviar").click(function (e) {
         e.preventDefault();
         $(".enviar").prop("disabled", "true");
-        if (quiz.haSeleccionado && quiz.opcionElegida == quiz.respuestaCorrecta) {
-            jugador.puntos += 500;
-            $(".puntos").html(jugador.puntos);
-        } else {
-            if (!quiz.haSeleccionado) {
-                audioError.play();
-                document.querySelector(".enviar").disabled = false;
-                $(".opcion").css("transition", "border 1s");
-                $(".opcion").css("border", "2px solid red");
-                $(".opcion").addClass('animate__animated animate__shakeX');
-                setTimeout(() => {
-                    $(".opcion").css("border", "2px solid white");
-                    $(".opcion").removeClass('animate__animated animate__shakeX');
-                }, 1000);
+        if (quiz.haSeleccionado) {
+            $(".siguiente").addClass('animate__animated animate__tada');
+            $(".siguiente").css("display", "inline");
+            if (quiz.opcionElegida == quiz.respuestaCorrecta) {
+                jugador.puntos += 500;
+                $(".puntos").html(jugador.puntos);
+                audioAlert.play();
+                opcionElegida.style.border = "2px solid lightgreen";
+                $(".quizBox").removeClass('animate__animated animate__bounceInRight');
+                $(".quizBox").css("transition", "border 1s");
+                $(".quizBox").css("border", "2px solid lightgreen");
+                $(".quizBox").addClass('animate__animated animate__bounce');
             } else {
                 audioFail.play();
+                opcionElegida.style.border = "2px solid red";
                 $(".quizBox").removeClass('animate__animated animate__bounceInRight');
                 $(".quizBox").css("transition", "border 1s");
                 $(".quizBox").css("border", "2px solid red");
                 $(".quizBox").addClass('animate__animated animate__shakeX');
                 $(".verCorrecto").addClass('animate__animated animate__tada');
                 $(".verCorrecto").css("display", "inline");
-                $(".siguiente").addClass('animate__animated animate__tada');
-                $(".siguiente").css("display", "inline");
             }
+        } else { // Player hasn't selected any option
+            audioError.play();
+            document.querySelector(".enviar").disabled = false;
+            $(".opcion").css("transition", "border 1s");
+            $(".opcion").css("border", "2px solid red");
+            $(".opcion").addClass('animate__animated animate__shakeX');
+            setTimeout(() => {
+                $(".opcion").css("border", "2px solid white");
+                $(".opcion").removeClass('animate__animated animate__shakeX');
+            }, 1000);
         }
+    });
+
+    // Watch solution button logic
+    $(".verCorrecto").click(function (e) {
+        e.preventDefault();
+        quiz.getOpcionCorrecta().style.border = "2px solid lightgreen";
+        quiz.getOpcionCorrecta().style.transition = "background-color 1s";
+        quiz.getOpcionCorrecta().style.backgroundColor = "lightgreen";
+        setTimeout(() => {
+            quiz.getOpcionCorrecta().style.backgroundColor = "";
+        }, 1000);
+    });
+
+    // Move on to the next question button logic
+    $(".siguiente").click(function (e) {
+        e.preventDefault();
+        audioPopUp2.play();
+        localStorage.setItem("jugador", JSON.stringify(jugador));
+        localStorage.setItem("quiz", (quizNumero++).toString);
+        $(".quizBox").removeClass('animate__animated animate__bounceInRight');
+        $(".quizBox").addClass('animate__animated animate__bounceOutLeft');
+        setTimeout(() => {
+            document.location.href = "./quiz1.html";
+        }, 1000);
     });
 });
