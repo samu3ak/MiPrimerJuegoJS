@@ -81,13 +81,10 @@
     cursor: pointer;
 }
 
-.quizBox button {
-    margin-left: 40%;
-    margin-top: 60px;
+.quizBox .enviar {
     background-color: white;
     font-family: Overpass Mono;
     font-weight: bolder;
-    border: none;
     height: 80px;
     width: 300px;
 }
@@ -95,4 +92,34 @@
 .quizBox button:hover {
     background-color: #03fa6e;
     cursor: pointer;
+}
+
+.verCorrecto {
+    float: right;
+    background-color: white;
+    font-family: Overpass Mono;
+    font-weight: bolder;
+    height: 50px;
+    width: 150px;
+    display: inline;
+    margin-top: 20px;
+    display: none;
+}
+
+.siguiente {
+    float: right;
+    background-color: white;
+    font-family: Overpass Mono;
+    font-weight: bolder;
+    height: 50px;
+    width: 150px;
+    margin-top: 20px;
+    display: none;
+}
+
+.botones {
+    padding-top: 50px;
+    padding-left: 600px;
+    display: grid;
+    grid-template-columns: 35% 20% 20%;
 }

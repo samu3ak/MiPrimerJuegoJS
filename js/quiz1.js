@@ -21,6 +21,12 @@ $(document).ready(function () {
     var audioMessage = new Audio("../audio/message.mp3");
     audioMessage.volume = 0.4;
 
+    var audioError = new Audio("../audio/error.mp3");
+    audioError.volume = 0.2;
+
+    var audioFail = new Audio("../audio/fail.mp3");
+    audioFail.volume = 0.5;
+
     // Classes definition
     class QuizBox {
         constructor(titulo, opcion1, opcion2, opcion3, opcion4, respuestaCorrecta) {
@@ -45,6 +51,15 @@ $(document).ready(function () {
                 $(`.opcion${indexOrKey + 1} p`).text(elementOrValue);
             });
         }
+        getOpcionCorrecta() {
+            var opciones = document.querySelectorAll(".opcion");
+            let i = 0;
+            while (i < opciones.length - 1 && opciones[i].innerHTML.trim() != "<p>" + this.respuestaCorrecta + "</p>") {
+                console.log(opciones[i].value);
+                i++;
+            }
+            return opciones[i];
+        }
     }
 
     // Events
@@ -56,20 +71,39 @@ $(document).ready(function () {
 
     $(".opcion").click(function (e) {
         e.preventDefault();
+        $(".opcion").css("transition", "none");
         quiz.haSeleccionado = true;
         quiz.opcionElegida = $(this).text().trim();
         $(".opcion").css("border", "2px solid white");
         $(this).css("border", "2px solid yellow");
     });
 
-    $("button").click(function (e) {
+    $(".enviar").click(function (e) {
         e.preventDefault();
-        $("button").prop("disabled", "true");
+        $(".enviar").prop("disabled", "true");
         if (quiz.haSeleccionado && quiz.opcionElegida == quiz.respuestaCorrecta) {
             jugador.puntos += 500;
             $(".puntos").html(jugador.puntos);
         } else {
-            
+            if (!quiz.haSeleccionado) {
+                audioError.play();
+                document.querySelector(".enviar").disabled = false;
+                $(".opcion").css("transition", "border 1s");
+                $(".opcion").css("border", "2px solid red");
+                $(".opcion").addClass('animate__animated animate__shakeX');
+                setTimeout(() => {
+                    $(".opcion").css("border", "2px solid white");
+                    $(".opcion").removeClass('animate__animated animate__shakeX');
+                }, 1000);
+            } else {
+                audioFail.play();
+                $(".quizBox").removeClass('animate__animated animate__bounceInRight');
+                $(".quizBox").css("transition", "border 1s");
+                $(".quizBox").css("border", "2px solid red");
+                $(".quizBox").addClass('animate__animated animate__shakeX');
+                $(".verCorrecto").addClass('animate__animated animate__tada');
+                $(".verCorrecto").css("display", "inline");
+            }
         }
     });
 });
