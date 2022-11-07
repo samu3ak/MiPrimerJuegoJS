@@ -74,8 +74,34 @@ $(document).ready(function () {
             var quiz = new QuizBox("¿Cuál es el animal preferido de Samuel?", "Perro", "Capibara", "Gato", "Periquito", "Gato");
             break;
         case 1:
+            var quiz = new QuizBox("¿Cómo se llama la mascota (gata)?", "Misifu", "Snowball", "Sili", "Sisa", "Sisa");
+            break;
+        case 2:
+            var quiz = new QuizBox("¿Dónde se ha criado?", "Chiclana, Cádiz", "Cádiz Cádiz", "San Fernando, Cádiz", "Puerto Real, Cádiz", "Chiclana, Cádiz");
+            break;
+        case 3:
+            var quiz = new QuizBox("¿Qué bachillerato ha realizado?", "Sociales", "Tecnológico", "Salud", "Letras", "Sociales");
+            break;
+        case 4:
+            var quiz = new QuizBox("¿Cuál es su serie animada favorita de la infancia?", "Doraemon", "Inazuma Eleven", "Código Lyoko", "Shin-Chan", "Shin-Chan");
+            break;
+        case 5:
+            var quiz = new QuizBox("¿Cuál fue su primera consola?", "PSX", "Nintendo DS", "Game Boy Color", "Nintendo GameCube", "PSX");
+            break;
+        case 6:
+            var quiz = new QuizBox("¿Cuál es su juego favorito (actualmente)?", "Apex Legends", "The Binding Of Isaac", "League Of Legends", "Valorant", "The Binding Of Isaac");
+            break;
+        case 7:
+            var quiz = new QuizBox("¿Cuál es su saga favorita de videojuegos de la infancia?", "Super Mario", "Legend Of Zelda", "Final Fantasy", "Fire Emblem", "Super Mario");
+            break;
+        case 8:
+            var quiz = new QuizBox("¿Qué le gusta beber cuando sale?", "Nestea", "Coca-Cola", "Fanta Naranja", "Cerveza", "Cerveza");
+            break;
+        case 9:
+            var quiz = new QuizBox("¿Cuál es su comida favorita?", "Parrillada Ibérica", "Pizza BBQ del Domino's", "Whopper", "Pasta Carbonara", "Parrillada Ibérica");
             break;
         default:
+            document.location.href = "./index.html";
             break;
     }
 
@@ -100,7 +126,7 @@ $(document).ready(function () {
             $(".siguiente").css("display", "inline");
             if (quiz.opcionElegida == quiz.respuestaCorrecta) {
                 jugador.puntos += 500;
-                $(".puntos").html(jugador.puntos);
+                $(".puntos").html(jugador.puntos + " pts");
                 audioAlert.play();
                 opcionElegida.style.border = "2px solid lightgreen";
                 $(".quizBox").removeClass('animate__animated animate__bounceInRight');
@@ -146,7 +172,7 @@ $(document).ready(function () {
         e.preventDefault();
         audioPopUp2.play();
         localStorage.setItem("jugador", JSON.stringify(jugador));
-        localStorage.setItem("quiz", (quizNumero++).toString);
+        localStorage.setItem("quiz", (quizNumero + 1).toString());
         $(".quizBox").removeClass('animate__animated animate__bounceInRight');
         $(".quizBox").addClass('animate__animated animate__bounceOutLeft');
         setTimeout(() => {
