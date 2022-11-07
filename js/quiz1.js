@@ -4,6 +4,7 @@ $(document).ready(function () {
     var jugador = JSON.parse(localStorage.getItem("jugador"));
     $(".nombre").html(jugador.nombre);
     $(".puntos").html(jugador.puntos);
+    var quizNumero = parseInt(localStorage.getItem("quiz"));
 
     // Audio variables declaration & Volume adjustment
     var audioAlert = new Audio("../audio/alert.mp3");
@@ -34,9 +35,10 @@ $(document).ready(function () {
             this.tiempo = 0;
             this.opciones = ["", "", "", ""];
             this.opcionElegida = "";
-            this.respuestaCorrecta = "Opcion 1";
+            this.respuestaCorrecta = respuestaCorrecta;
             this.haSeleccionado = false;
-            $(".quizBox .titulo").text(this.titulo);
+            this.setTitulo(titulo);
+            this.setOpciones(opcion1, opcion2, opcion3, opcion4);
             $(".quizBox .tiempo").text(this.tiempo + "s");
         }
         setTitulo(titulo) {
@@ -67,7 +69,13 @@ $(document).ready(function () {
     $(".quizBox").css("display", "block");
     audioBack.play();
 
-    var quiz = new QuizBox();
+    switch (quizNumero) {
+        case 0:
+            var quiz = new QuizBox("Hola", "test1", "test2", "test3", "test4", "test3");
+            break;
+        default:
+            break;
+    }
 
     $(".opcion").click(function (e) {
         e.preventDefault();

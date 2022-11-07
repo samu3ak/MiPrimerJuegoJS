@@ -16,6 +16,8 @@ $(document).ready(function () {
     $(".nombre").innerHTML = jugador.nombre;
     $(".puntos").innerHTML = jugador.puntos + " pts";
 
+    localStorage.setItem("quiz", "0");
+
     // Audio variables declaration & Volume adjustment
     var audioAlert = new Audio("../audio/alert.mp3");
     audioAlert.volume = 1;
