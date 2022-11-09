@@ -54,7 +54,7 @@ $(document).ready(function () {
             setTimeout(() => {
                 $(".loginBox").remove();
                 setTimeout(() => {
-                    document.location.href = "html/welcome.html";
+                    document.location.href = "./html/welcome.html";
                 }, 200);
             }, 500);
         }
