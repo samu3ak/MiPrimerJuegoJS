@@ -14,13 +14,13 @@
     font-weight: bolder;
 }
 
-body{
+body {
     overflow: hidden;
 }
 
 .quizBox {
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 0px;
     background-color: black;
     border: 2px solid white;
     height: 600px;
@@ -120,4 +120,17 @@ body{
     padding-left: 600px;
     display: grid;
     grid-template-columns: 35% 20% 20%;
+}
+
+.progreso {
+    text-align: center;
+    margin: 0 auto;
+    color: white;
+    font-family: Overpass Mono;
+    font-weight: bolder;
+}
+
+.progreso progress{
+    background-color: #03fa6e;
+    width: 400px;   
 }
