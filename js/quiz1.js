@@ -5,6 +5,10 @@ $(document).ready(function () {
     $(".nombre").html(jugador.nombre);
     $(".puntos").html(jugador.puntos + " pts");
     var quizNumero = parseInt(localStorage.getItem("quiz"));
+    var quizMax = 12;
+    localStorage.setItem("quizMax", quizMax);
+    $(".progreso p").text(`${quizNumero}/${quizMax}`);
+    $("progress").attr("value", (quizNumero / quizMax * 100));
 
     // Audio variables declaration & Volume adjustment
     var audioAlert = new Audio("../audio/alert.mp3");
