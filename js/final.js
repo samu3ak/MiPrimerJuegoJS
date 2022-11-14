@@ -5,9 +5,10 @@ $(document).ready(function () {
     var acertadas = jugador.puntos / 500;
     var color = "";
     var mensaje = "";
+    var quizMax = localStorage.getItem("quizMax");
     $(".nombre").html(jugador.nombre);
     $(".puntos").html("Puntaje: " + jugador.puntos + " pts");
-    $(".acertadas").html("Acertadas: " + acertadas + "/12");
+    $(".acertadas").html("Acertadas: " + acertadas + "/" + quizMax);
 
     // Message function
     function setMensaje() {
